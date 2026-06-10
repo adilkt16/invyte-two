@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #18130a;
+  --color-primary-accent: #d4af37;
+  --color-secondary-accent: #f3e5ab;
+  --color-card-surface: #1e180f;
+  --color-text-primary: #fcf8f2;
+  --color-text-muted: #c9a84c;
+  --color-dark-brown: #0d0a06;
+  --color-burgundy: #130f08;
+  
+  --font-amiri: 'Amiri', serif;
+  --font-raleway: 'Raleway', sans-serif;
+}
+
+:root {
+  font-family: 'Amiri', serif;
+  color-scheme: light;
+  --curtain-open-x-left: -90%;
+  --curtain-open-x-right: 90%;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --curtain-open-x-left: -84%;
+    --curtain-open-x-right: 84%;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --curtain-open-x-left: -78%;
+    --curtain-open-x-right: 78%;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #0c0905;
+}
+
+/* Base styles for root container */
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border: none;
+  display: block;
+}
+
+/* Worn paper parchment noise background */
+.noise-bg {
+  position: relative;
+}
+
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle repeating arabesque SVG pattern tiled across the background */
+.arabesque-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z' fill='none' stroke='%23c9a84c' stroke-width='0.5' stroke-opacity='0.25'/%3E%3Cpath d='M40 10 C45 20, 55 20, 40 35 C25 20, 35 20, 40 10 Z M40 70 C45 60, 55 60, 40 45 C25 60, 35 60, 40 70 Z M10 40 C20 45, 20 55, 35 40 C20 25, 20 35, 10 40 Z M70 40 C60 45, 60 55, 45 40 C60 25, 60 35, 70 40 Z' fill='%23c9a84c' fill-opacity='0.15'/%3E%3Ccircle cx='40' cy='40' r='2' fill='%23d4af37' fill-opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Worn paper vignette shadow */
+.parchment-vignette {
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Curtain brocade/damask SVG pattern with 3D folding linear gradient */
+.curtain-damask {
+  background-color: #0f0c08;
+  background-image: 
+    repeating-linear-gradient(90deg, 
+      rgba(0, 0, 0, 0.45) 0px, 
+      rgba(0, 0, 0, 0.15) 20px, 
+      rgba(212, 175, 55, 0.08) 40px, 
+      rgba(0, 0, 0, 0.2) 60px, 
+      rgba(0, 0, 0, 0.45) 80px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C60 20, 80 20, 50 50 C20 20, 40 20, 50 0 Z M50 100 C60 80, 80 80, 50 50 C20 80, 40 80, 50 100 Z M0 50 C20 60, 20 80, 50 50 C20 20, 20 40, 0 50 Z M100 50 C80 60, 80 80, 50 50 C80 20, 80 40, 100 50 Z' fill='%23221c10' fill-opacity='0.6' fill-rule='evenodd'/%3E%3Cpath d='M50 20 C55 30, 65 30, 50 40 C35 30, 45 30, 50 20 Z M50 80 C55 70, 65 70, 50 60 C35 70, 45 70, 50 80 Z' fill='%23d4af37' fill-opacity='0.25'/%3E%3C/svg%3E");
+}
+
+@keyframes curtainSwayLeft {
+  0% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(0.3deg) skewX(0.15deg);
+  }
+  100% {
+    transform: rotate(-0.2deg) skewX(-0.1deg);
+  }
+}
+
+@keyframes curtainSwayRight {
+  0% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(-0.3deg) skewX(-0.15deg);
+  }
+  100% {
+    transform: rotate(0.2deg) skewX(0.1deg);
+  }
+}
+
+.animate-curtain-sway-left {
+  animation: curtainSwayLeft 7s ease-in-out infinite alternate;
+  transform-origin: top left;
+}
+
+.animate-curtain-sway-right {
+  animation: curtainSwayRight 7s ease-in-out infinite alternate;
+  transform-origin: top right;
+}
+
+/* Envelope curl shadow style */
+.envelope-shadow-curl {
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85);
+}
+
+.envelope-shadow-curl::before,
+.envelope-shadow-curl::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 14px;
+  width: 50%;
+  height: 20%;
+  max-width: 300px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 18px 12px rgba(0, 0, 0, 0.85);
+  transition: all 0.3s ease;
+}
+
+.envelope-shadow-curl::before {
+  left: 12px;
+  transform: rotate(-3.5deg);
+}
+
+.envelope-shadow-curl::after {
+  right: 12px;
+  transform: rotate(3.5deg);
+}
+
+/* Custom premium manuscript card style */
+.manuscript-card {
+  background-color: #1e180f;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Shimmer sweep animation */
+.manuscript-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer-sweep 7s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shimmer-sweep {
+  0% { left: -150%; }
+  25% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Inset 10px inner border at 0.5px in accent color at 12% opacity */
+.manuscript-card-inner {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  border: 0.5px solid rgba(212, 175, 55, 0.18);
+  pointer-events: none;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* Four CSS corner brackets */
+.bracket-tl, .bracket-tr, .bracket-bl, .bracket-br {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.bracket-tl {
+  top: 6px;
+  left: 6px;
+  border-top: 1.5px solid rgba(212, 175, 55, 0.8);
+  border-left: 1.5px solid rgba(212, 175, 55, 0.8);
+}
+
+.bracket-tr {
+  top: 6px;
+  right: 6px;
+  border-top: 1.5px solid rgba(212, 175, 55, 0.8);
+  border-right: 1.5px solid rgba(212, 175, 55, 0.8);
+}
+
+.bracket-bl {
+  bottom: 6px;
+  left: 6px;
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.8);
+  border-left: 1.5px solid rgba(212, 175, 55, 0.8);
+}
+
+.bracket-br {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.8);
+  border-right: 1.5px solid rgba(212, 175, 55, 0.8);
+}
+
+/* Arabic calligraphy calligraphy display styles */
+.arabic-calligraphy {
+  font-family: 'Amiri', serif;
+  direction: rtl;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+}
+
+/* Gold text styling with ink bleed glow */
+.gold-glow {
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.55);
+}
+
+/* Dark version colors */
+.bg-dark-brown-vignette {
+  background: 
+    radial-gradient(circle, rgba(30, 24, 15, 0.85) 0%, rgba(8, 6, 4, 0.99) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M60 0 L120 60 L60 120 L0 60 Z' fill='none' stroke='%23d4af37' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M60 20 C66 35, 76 35, 60 55 C44 35, 54 35, 60 20 Z M60 100 C66 85, 76 85, 60 65 C44 85, 54 85, 60 100 Z M20 60 C35 66, 35 76, 60 60 C35 44, 35 54, 20 60 Z M100 60 C85 66, 85 76, 60 60 C85 44, 85 54, 100 60 Z' fill='%23d4af37' fill-opacity='0.08'/%3E%3Ccircle cx='60' cy='60' r='3.5' fill='%23d4af37' fill-opacity='0.4'/%3E%3C/svg%3E"),
+    #0c0600;
+  background-blend-mode: normal;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0805;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f3e5ab;
+}
+
+/* Theme-integrated Leaflet Map transitions */
+.map-container .leaflet-container {
+  filter: sepia(0.35) hue-rotate(6deg) contrast(0.92) saturate(1.1) brightness(0.96);
+  opacity: 0.88;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+  background-color: #1e180f !important;
+}
+
+.map-container:hover .leaflet-container {
+  filter: none;
+  opacity: 1;
+}
+
+/* Custom leaflet overrides to match wedding theme */
+.leaflet-popup-content-wrapper {
+  background-color: #1e180f !important;
+  color: #fcf8f2 !important;
+  border: 1px solid #d4af37 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15) !important;
+  font-family: 'Raleway', sans-serif !important;
+  padding: 2px !important;
+}
+
+.leaflet-popup-content {
+  margin: 8px 12px !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #1e180f !important;
+  border-left: 1px solid #d4af37 !important;
+  border-bottom: 1px solid #d4af37 !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-close-button {
+  color: #d4af37 !important;
+  font-size: 14px !important;
+  padding: 4px 8px 0 0 !important;
+}
+
+/* Custom Map Marker Ping Animation */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.custom-map-marker .animate-ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
