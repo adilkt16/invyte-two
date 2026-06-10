@@ -11,6 +11,7 @@ import DrapedCurtains from './DrapedCurtains';
 import AudioPlayer from './AudioPlayer';
 import FloatingPetals from './FloatingPetals';
 import SubtleAnimatedBackground from './SubtleAnimatedBackground';
+import ArabianMonument from './ArabianMonument';
 
 // Decorative components
 const SectionDivider = () => (
@@ -657,6 +658,11 @@ export default function Invitation() {
               <p className="font-cormorant text-xs sm:text-sm text-[#8d6648] mt-1 select-text">
                 {settings.nikahVenue}
               </p>
+            </div>
+
+            {/* Small Arabian Monument in Hero Background (pinned to bottom border, far left) */}
+            <div className="absolute bottom-0 left-8 sm:left-20 md:left-28 w-full max-w-[280px] sm:max-w-[350px] md:max-w-[380px] z-0 opacity-[0.8] flex justify-start items-end">
+              <ArabianMonument />
             </div>
 
             {/* Pulse Indicator */}
