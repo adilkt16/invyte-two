@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function Chandelier() {
   return (
     <motion.div 
-      className="relative w-56 h-56 sm:w-72 sm:h-72 mx-auto flex justify-center items-start origin-top"
+      className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto flex justify-center items-start origin-top"
       animate={{ rotate: [-1, 1, -1] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
     >

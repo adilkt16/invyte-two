@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel+Decorative:wght@400;700&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap');
 
 @theme {
   --color-parchment: #fdfaf5;
@@ -16,6 +16,9 @@
   --font-pinyon: 'Pinyon Script', cursive;
   --font-cinzel: 'Cinzel', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
+  --font-great-vibes: 'Great Vibes', cursive;
+  --font-playfair: 'Playfair Display', serif;
+  --font-cinzel-dec: 'Cinzel Decorative', serif;
 }
 
 :root {

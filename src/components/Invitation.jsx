@@ -13,6 +13,11 @@ import FloatingPetals from './FloatingPetals';
 import SubtleAnimatedBackground from './SubtleAnimatedBackground';
 import ArabianMonument from './ArabianMonument';
 
+const toTitleCase = (str) => {
+  if (!str) return '';
+  return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+};
+
 // Decorative components
 const SectionDivider = () => (
   <div className="flex items-center justify-center my-10 w-full max-w-sm mx-auto">
@@ -617,56 +622,56 @@ export default function Invitation() {
           {stage === 'revealed' && <FloatingPetals />}
 
           {/* 3A. HERO SECTION */}
-          <section className="relative w-full h-screen flex flex-col justify-between items-center bg-transparent overflow-hidden px-12 py-16 text-center select-none border-b border-[#aa7c11]/20">
+          <section className="relative w-full h-screen min-h-[600px] sm:min-h-[720px] flex flex-col items-center bg-transparent overflow-hidden px-12 pt-0 pb-6 text-center select-none border-b border-[#aa7c11]/20">
 
             {/* Hanging crystal chandelier centerpiece */}
-            <div className="absolute top-0 left-[50%] translate-x-[-50%] z-10">
+            <div className="z-10 w-full flex justify-center">
               <Chandelier />
             </div>
 
             {/* Central typography block */}
-            <div className="flex-grow flex flex-col justify-center items-center mt-32 sm:mt-24 z-10 max-w-lg">
+            <div className="flex-grow flex flex-col justify-center items-center z-10 max-w-lg">
               {guest && (
-                <div className="animate-fade-in mb-5">
+                <div className="animate-fade-in mb-3 sm:mb-5">
                   <span className="font-raleway text-xs sm:text-sm tracking-widest text-[#aa7c11] font-bold uppercase bg-[#fdfbf9]/95 px-5 py-2 rounded-full border border-[#aa7c11]/40 shadow-lg">
                     Especially Invited: {guest.name}
                   </span>
                 </div>
               )}
 
-              <span className="font-amiri text-2xl text-[#aa7c11] mb-2 font-semibold">
+              <span className="font-amiri text-xl sm:text-2xl text-[#aa7c11] mb-1 sm:mb-2 font-semibold">
                 بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
               </span>
 
-              <h2 className="font-cormorant text-xs tracking-wider text-[#8d6648] uppercase mb-4 font-bold">
+              <h2 className="font-cormorant text-[10px] sm:text-xs tracking-wider text-[#8d6648] uppercase mb-2 sm:mb-4 font-bold">
                 Request the honor of your presence for the wedding of
               </h2>
 
               {/* Couple Names */}
-              <h1 className="font-pinyon text-6xl sm:text-7xl md:text-8xl font-normal text-[#aa7c11] drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.12)] leading-none select-text py-2">
-                {settings.groomName}
-                <span className="block font-cormorant text-3xl my-3 text-[#aa7c11] italic">&</span>
-                {settings.brideName}
+              <h1 className="font-great-vibes text-6xl sm:text-8xl md:text-9xl font-normal text-[#aa7c11] drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.12)] leading-none select-text py-1 sm:py-2">
+                {toTitleCase(settings.groomName)}
+                <span className="block font-cormorant text-2xl sm:text-3xl my-1 sm:my-3 text-[#aa7c11] italic">&</span>
+                {toTitleCase(settings.brideName)}
               </h1>
 
-              <div className="w-16 h-[0.75px] bg-[#aa7c11] my-6"></div>
+              <div className="w-16 h-[0.75px] bg-[#aa7c11] my-3 sm:my-6"></div>
 
               {/* Event date summary */}
-              <p className="font-cormorant text-lg sm:text-xl font-medium tracking-wide text-[#5c3f2b] uppercase select-text">
+              <p className="font-cormorant text-base sm:text-lg md:text-xl font-medium tracking-wide text-[#5c3f2b] uppercase select-text">
                 {settings.nikahDate}
               </p>
-              <p className="font-cormorant text-xs sm:text-sm text-[#8d6648] mt-1 select-text">
+              <p className="font-cormorant text-[10px] sm:text-xs md:text-sm text-[#8d6648] mt-0.5 sm:mt-1 select-text">
                 {settings.nikahVenue}
               </p>
             </div>
 
             {/* Small Arabian Monument in Hero Background (pinned to bottom border, far left) */}
-            <div className="absolute bottom-0 left-8 sm:left-20 md:left-28 w-full max-w-[280px] sm:max-w-[350px] md:max-w-[380px] z-0 opacity-[0.8] flex justify-start items-end">
+            <div className="absolute bottom-0 left-8 sm:left-20 md:left-28 w-full max-w-[560px] sm:max-w-[700px] md:max-w-[760px] z-0 opacity-[0.45] flex justify-start items-end">
               <ArabianMonument />
             </div>
 
             {/* Pulse Indicator */}
-            <div className="absolute bottom-4 left-[50%] translate-x-[-50%] z-20 flex flex-col items-center">
+            <div className="z-20 flex flex-col items-center mt-auto">
               <span className="font-raleway text-[9px] uppercase tracking-widest text-[#8d6648] mb-1">
                 Scroll down
               </span>

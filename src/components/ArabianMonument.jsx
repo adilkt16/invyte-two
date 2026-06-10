@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function ArabianMonument({ className = "" }) {
   return (
-    <div className={`relative w-full max-w-lg mx-auto pointer-events-none select-none ${className}`}>
+    <div className={`relative w-full max-w-4xl mx-auto pointer-events-none select-none ${className}`}>
       <svg 
         viewBox="0 0 600 220" 
         className="w-full h-auto drop-shadow-[0_2px_8px_rgba(170,124,17,0.08)]"
