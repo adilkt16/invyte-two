@@ -666,7 +666,7 @@ export default function Invitation() {
             </div>
 
             {/* Small Arabian Monument in Hero Background (pinned to bottom border, far left) */}
-            <div className="absolute bottom-0 left-8 sm:left-20 md:left-28 w-full max-w-[560px] sm:max-w-[700px] md:max-w-[760px] z-0 opacity-[0.45] flex justify-start items-end">
+            <div className="absolute bottom-0 left-8 sm:left-20 md:left-28 w-full max-w-[560px] sm:max-w-[700px] md:max-w-[760px] z-0 opacity-[0.80] flex justify-start items-end">
               <ArabianMonument />
             </div>
 
