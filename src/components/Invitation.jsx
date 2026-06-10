@@ -10,6 +10,7 @@ import Chandelier from './Chandelier';
 import DrapedCurtains from './DrapedCurtains';
 import AudioPlayer from './AudioPlayer';
 import FloatingPetals from './FloatingPetals';
+import SubtleAnimatedBackground from './SubtleAnimatedBackground';
 
 // Decorative components
 const SectionDivider = () => (
@@ -64,7 +65,7 @@ const TasselRight = () => (
 );
 
 const WaxSeal = ({ onClick, isOpened }) => (
-  <div 
+  <div
     className="absolute z-40"
     style={{
       top: '63.33%',
@@ -102,7 +103,7 @@ const WaxSeal = ({ onClick, isOpened }) => (
 
 const FloatingParticles = () => {
   const [particles, setParticles] = useState([]);
-  
+
   useEffect(() => {
     // Generate 35 particles with random positions, delays, durations, and horizontal drift range
     const items = Array.from({ length: 35 }, (_, i) => ({
@@ -156,7 +157,7 @@ const LocationMap = ({ venue, address, mapsUrl }) => {
 
   useEffect(() => {
     let isMounted = true;
-    
+
     const geocode = async () => {
       try {
         let query = encodeURIComponent(`${venue || ''} ${address || ''}`.trim());
@@ -164,7 +165,7 @@ const LocationMap = ({ venue, address, mapsUrl }) => {
           headers: { 'User-Agent': 'WeddingInvitationApp/1.0' }
         });
         let data = await res.json();
-        
+
         if ((!data || data.length === 0) && address) {
           query = encodeURIComponent(address.trim());
           res = await fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1`, {
@@ -236,7 +237,7 @@ const LocationMap = ({ venue, address, mapsUrl }) => {
     });
 
     const marker = L.marker(coords, { icon: customIcon }).addTo(map);
-    
+
     marker.bindPopup(`
       <div class="text-center font-raleway p-1">
         <h4 class="font-bold text-xs text-[#aa7c11] uppercase tracking-wider">${venue}</h4>
@@ -293,23 +294,23 @@ const LocationMap = ({ venue, address, mapsUrl }) => {
             ) : (
               <>
                 <div ref={mapContainerRef} className="w-full h-full z-0 cursor-grab active:cursor-grabbing" />
-                
+
                 <div className="absolute top-3 right-3 flex flex-col space-y-1.5 z-10">
-                  <button 
+                  <button
                     onClick={handleZoomIn}
                     className="p-1.5 bg-[#fdfbf9]/90 hover:bg-[#aa7c11] text-[#aa7c11] hover:text-[#fdfbf9] border border-[#aa7c11]/30 hover:border-transparent rounded shadow-md transition-all active:scale-95 cursor-pointer"
                     title="Zoom In"
                   >
                     <Plus className="w-3.5 h-3.5" />
                   </button>
-                  <button 
+                  <button
                     onClick={handleZoomOut}
                     className="p-1.5 bg-[#fdfbf9]/90 hover:bg-[#aa7c11] text-[#aa7c11] hover:text-[#fdfbf9] border border-[#aa7c11]/30 hover:border-transparent rounded shadow-md transition-all active:scale-95 cursor-pointer"
                     title="Zoom Out"
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <button 
+                  <button
                     onClick={handleResetView}
                     className="p-1.5 bg-[#fdfbf9]/90 hover:bg-[#aa7c11] text-[#aa7c11] hover:text-[#fdfbf9] border border-[#aa7c11]/30 hover:border-transparent rounded shadow-md transition-all active:scale-95 cursor-pointer"
                     title="Reset View"
@@ -386,7 +387,7 @@ export default function Invitation() {
   const [settings, setSettings] = useState(getSettings());
   const [guest, setGuest] = useState({ name: 'Honored Guest', slug: 'guest', rsvp: 'pending', guest_count: 0 });
   const [stage, setStage] = useState('envelope'); // 'envelope', 'opening', 'curtains-closing', 'curtains-opening', 'revealed'
-  
+
   // RSVP Form States
   const [rsvpStep, setRsvpStep] = useState(1);
   const [rsvpSelection, setRsvpSelection] = useState(null);
@@ -470,7 +471,7 @@ export default function Invitation() {
   const handleConfirmRSVP = () => {
     setSubmittingRSVP(true);
     const finalCount = rsvpSelection === 'attending' ? guestCount : 0;
-    
+
     setTimeout(() => {
       const updated = updateRSVP(guest.slug, rsvpSelection, finalCount);
       if (updated) {
@@ -491,7 +492,7 @@ export default function Invitation() {
   const getWhatsAppLink = () => {
     const template = settings.whatsappTemplate;
     const guestLink = `${window.location.origin}/invite/${guest.slug}`;
-    
+
     let msg = template
       .replace(/%%GUEST_NAME%%/g, guest.name)
       .replace(/GUEST_NAME/g, guest.name)
@@ -507,7 +508,7 @@ export default function Invitation() {
 
   return (
     <div className="min-h-screen text-[#5c3f2b] font-amiri select-none relative bg-[#fdfaf5]">
-      
+
       {/* 1. CURTAINS LAYER OVERLAY */}
       <AnimatePresence>
         {stage !== 'envelope' && stage !== 'opening' && (
@@ -518,7 +519,7 @@ export default function Invitation() {
       {/* 2. ENVELOPE ENTRY STAGE */}
       {stage !== 'revealed' && stage !== 'curtains-opening' && stage !== 'curtains-closing' && (
         <div className="fixed inset-0 z-40 bg-dark-brown-vignette flex flex-col items-center justify-center p-4">
-          
+
           <motion.p
             className="text-[#aa7c11]/80 font-raleway tracking-widest text-[11px] uppercase mb-6 font-bold"
             initial={{ opacity: 0 }}
@@ -530,7 +531,7 @@ export default function Invitation() {
 
           {/* Envelope Card */}
           <div className="relative w-full max-w-[460px] aspect-[1.55] select-none perspective-[1000px]">
-            <div 
+            <div
               onClick={handleOpenEnvelope}
               className={`w-full h-full relative rounded-lg bg-[#241c12] noise-bg border border-[#aa7c11]/20 envelope-shadow-curl transition-all duration-300 ${stage === 'envelope' ? 'hover:scale-[1.01] cursor-pointer' : ''}`}
             >
@@ -554,7 +555,7 @@ export default function Invitation() {
               </motion.div>
 
               {/* Envelope pocket front cover */}
-              <div 
+              <div
                 className="absolute inset-0 bg-[#1c160e] noise-bg border border-[#aa7c11]/10 rounded-lg z-20 flex flex-col justify-end p-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden"
                 style={{ position: 'absolute' }}
               >
@@ -606,14 +607,17 @@ export default function Invitation() {
       {/* 3. REVEALED INVITATION PAGE */}
       {(stage === 'revealed' || stage === 'curtains-opening' || stage === 'curtains-closing') && (
         <div className="w-full bg-[#fdfaf5] noise-bg parchment-vignette min-h-screen relative overflow-hidden select-text">
-          
+
+          {/* Subtle Animated Background */}
+          <SubtleAnimatedBackground />
+
           {/* Ambient Particles & Rose Petals backdrop */}
           <FloatingParticles />
           {stage === 'revealed' && <FloatingPetals />}
 
           {/* 3A. HERO SECTION */}
           <section className="relative w-full h-screen flex flex-col justify-between items-center bg-transparent overflow-hidden px-12 py-16 text-center select-none border-b border-[#aa7c11]/20">
-            
+
             {/* Hanging crystal chandelier centerpiece */}
             <div className="absolute top-0 left-[50%] translate-x-[-50%] z-10">
               <Chandelier />
@@ -632,7 +636,7 @@ export default function Invitation() {
               <span className="font-amiri text-2xl text-[#aa7c11] mb-2 font-semibold">
                 بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
               </span>
-              
+
               <h2 className="font-cormorant text-xs tracking-wider text-[#8d6648] uppercase mb-4 font-bold">
                 Request the honor of your presence for the wedding of
               </h2>
@@ -661,8 +665,8 @@ export default function Invitation() {
                 Scroll down
               </span>
               <div className="w-4 h-6 border border-[#aa7c11]/40 rounded-full flex justify-center p-1">
-                <motion.div 
-                  className="w-1.5 h-1.5 bg-[#aa7c11] rounded-full" 
+                <motion.div
+                  className="w-1.5 h-1.5 bg-[#aa7c11] rounded-full"
                   animate={{ y: [0, 8, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
                 />
@@ -673,7 +677,7 @@ export default function Invitation() {
           {/* 3B. SCROLLABLE DETAILS CONTENT */}
           {stage === 'revealed' && (
             <div className="w-full max-w-4xl mx-auto px-6 py-20 space-y-24 flex flex-col items-center z-10 relative">
-              
+
               {/* Opening Blessings Block */}
               <ScrollRevealSection>
                 <div className="text-center space-y-4 max-w-xl mx-auto">
@@ -683,7 +687,7 @@ export default function Invitation() {
                   <p className="font-cormorant text-sm text-[#8d6648] italic select-text">
                     "In the name of Allah, the Most Gracious, the Most Merciful"
                   </p>
-                  
+
                   <SectionDivider />
 
                   <p className="font-cormorant text-lg text-[#5c3f2b] select-text px-4 sm:px-0">
@@ -769,7 +773,7 @@ export default function Invitation() {
 
               {/* Event Cards Section */}
               <div className={`grid gap-8 w-full max-w-4xl my-4 ${settings.walimahDate ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-xl mx-auto'}`}>
-                
+
                 {/* Event 1 Card (Nikah) */}
                 <ScrollRevealSection>
                   <div className="flex flex-col h-full justify-between items-center text-center">
@@ -1023,7 +1027,7 @@ export default function Invitation() {
                 <p className="text-sm font-raleway text-[#8d6648] tracking-wider leading-relaxed italic max-w-md mx-auto">
                   Barakallahu Lakuma — May Allah bless you both and unite you in goodness
                 </p>
-                
+
                 <p className="arabic-calligraphy text-3xl text-[#aa7c11] font-bold mt-4 gold-glow">آمِيْن</p>
                 <p className="text-[10px] font-raleway text-[#8d6648] uppercase tracking-widest mt-1">Ameen</p>
 

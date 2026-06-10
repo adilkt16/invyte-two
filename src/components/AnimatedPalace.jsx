@@ -18,9 +18,9 @@ export default function AnimatedPalace() {
   return (
     <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-sunset-gradient">
       {/* Animated Sunset Sky Gradients and Clouds */}
-      <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none select-none" 
-        viewBox="0 0 1200 800" 
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none select-none"
+        viewBox="0 0 1200 800"
         preserveAspectRatio="xMidYMax slice"
       >
         <defs>
@@ -77,17 +77,17 @@ export default function AnimatedPalace() {
 
         {/* Slow-Drifting Clouds */}
         <g opacity="0.15">
-          <motion.path 
-            d="M100 130 C140 100 200 100 220 130 C250 100 310 100 340 130 L340 145 L100 145 Z" 
-            stroke="url(#goldEdge)" 
+          <motion.path
+            d="M100 130 C140 100 200 100 220 130 C250 100 310 100 340 130 L340 145 L100 145 Z"
+            stroke="url(#goldEdge)"
             strokeWidth="0.75"
             fill="none"
             animate={{ x: [-50, 80, -50] }}
             transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
           />
-          <motion.path 
-            d="M750 170 C780 150 830 150 850 170 C880 150 940 150 970 170 L970 185 L750 185 Z" 
-            stroke="url(#goldEdge)" 
+          <motion.path
+            d="M750 170 C780 150 830 150 850 170 C880 150 940 150 970 170 L970 185 L750 185 Z"
+            stroke="url(#goldEdge)"
             strokeWidth="0.75"
             fill="none"
             animate={{ x: [60, -60, 60] }}
@@ -96,11 +96,11 @@ export default function AnimatedPalace() {
         </g>
 
         {/* ================= BACKGROUND DUNES SILHOUETTE ================= */}
-        <path 
-          d="M-50 540 Q250 480 600 520 T1250 500 L1250 850 L-50 850 Z" 
-          fill="url(#duneSilhouette)" 
-          stroke="url(#goldEdge)" 
-          strokeWidth="0.5" 
+        <path
+          d="M-50 540 Q250 480 600 520 T1250 500 L1250 850 L-50 850 Z"
+          fill="url(#duneSilhouette)"
+          stroke="url(#goldEdge)"
+          strokeWidth="0.5"
           opacity="0.95"
         />
 
@@ -178,23 +178,23 @@ export default function AnimatedPalace() {
         </motion.g>
 
         {/* ================= MIDDLEGROUND DUNES SILHOUETTE ================= */}
-        <path 
-          d="M-50 620 Q350 660 700 600 T1250 630 L1250 850 L-50 850 Z" 
-          fill="url(#duneSilhouette)" 
-          stroke="url(#goldEdge)" 
-          strokeWidth="0.75" 
+        <path
+          d="M-50 620 Q350 660 700 600 T1250 630 L1250 850 L-50 850 Z"
+          fill="url(#duneSilhouette)"
+          stroke="url(#goldEdge)"
+          strokeWidth="0.75"
         />
 
         {/* ================= FOREGROUND DUNES SILHOUETTE ================= */}
-        <path 
-          d="M-50 700 Q250 670 600 720 T1250 690 L1250 850 L-50 850 Z" 
-          fill="url(#duneSilhouette)" 
-          stroke="url(#goldEdge)" 
-          strokeWidth="1.25" 
+        <path
+          d="M-50 700 Q250 670 600 720 T1250 690 L1250 850 L-50 850 Z"
+          fill="url(#duneSilhouette)"
+          stroke="url(#goldEdge)"
+          strokeWidth="1.25"
         />
 
         {/* ================= SWAYING PALM TREE SILHOUETTES ================= */}
-        
+
         {/* Left Palm Tree */}
         <motion.g
           animate={{ rotate: [-1, 1, -1] }}
@@ -202,11 +202,11 @@ export default function AnimatedPalace() {
           style={{ transformOrigin: "80px 720px" }}
         >
           {/* Trunk */}
-          <path 
-            d="M75 720 Q85 640 100 500 Q90 500 85 515 Q72 630 65 720 Z" 
-            fill="url(#duneSilhouette)" 
-            stroke="url(#goldEdge)" 
-            strokeWidth="0.75" 
+          <path
+            d="M75 720 Q85 640 100 500 Q90 500 85 515 Q72 630 65 720 Z"
+            fill="url(#duneSilhouette)"
+            stroke="url(#goldEdge)"
+            strokeWidth="0.75"
           />
           {/* Fronds */}
           <g stroke="url(#goldEdge)" strokeWidth="0.75" fill="url(#duneSilhouette)">
@@ -226,11 +226,11 @@ export default function AnimatedPalace() {
           style={{ transformOrigin: "1120px 720px" }}
         >
           {/* Trunk */}
-          <path 
-            d="M1125 720 Q1115 640 1100 500 Q1110 500 1115 515 Q1128 630 1135 720 Z" 
-            fill="url(#duneSilhouette)" 
-            stroke="url(#goldEdge)" 
-            strokeWidth="0.75" 
+          <path
+            d="M1125 720 Q1115 640 1100 500 Q1110 500 1115 515 Q1128 630 1135 720 Z"
+            fill="url(#duneSilhouette)"
+            stroke="url(#goldEdge)"
+            strokeWidth="0.75"
           />
           {/* Fronds */}
           <g stroke="url(#goldEdge)" strokeWidth="0.75" fill="url(#duneSilhouette)">
