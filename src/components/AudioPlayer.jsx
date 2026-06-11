@@ -38,7 +38,7 @@ export default function AudioPlayer({ startPlaying, audioUrl = "/bg-music.mp3" }
 
   const togglePlay = () => {
     if (!audioRef.current) return;
-    
+
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
@@ -51,28 +51,8 @@ export default function AudioPlayer({ startPlaying, audioUrl = "/bg-music.mp3" }
 
   return (
     <>
-      {/* Top Right Sound Toggle */}
-      <div className="fixed top-4 right-4 z-40">
-        <button
-          onClick={togglePlay}
-          className="w-10 h-10 rounded-full bg-[#f5e6d0]/80 backdrop-blur-sm border border-[#c9a060]/30 shadow-md flex items-center justify-center text-[#8b4513] hover:bg-[#f5e6d0] transition-all cursor-pointer"
-          title={isPlaying ? "Mute Music" : "Play Music"}
-        >
-          {isPlaying ? (
-            <div className="flex items-end gap-[2px] h-3.5">
-              <span className="w-[3px] bg-[#8b4513] animate-bounce" style={{ height: '100%', animationDelay: '0.1s' }} />
-              <span className="w-[3px] bg-[#8b4513] animate-bounce" style={{ height: '70%', animationDelay: '0.3s' }} />
-              <span className="w-[3px] bg-[#8b4513] animate-bounce" style={{ height: '90%', animationDelay: '0.5s' }} />
-              <span className="w-[3px] bg-[#8b4513] animate-bounce" style={{ height: '50%', animationDelay: '0.2s' }} />
-            </div>
-          ) : (
-            <VolumeX className="w-5 h-5" />
-          )}
-        </button>
-      </div>
-
       {/* Bottom Right Floating Play/Pause Action */}
-      <div className="fixed bottom-4 right-4 z-40">
+      <div className="fixed bottom-4 right-4 z-999">
         <button
           onClick={togglePlay}
           className="w-12 h-12 rounded-full bg-gradient-to-br from-[#c9a060] to-[#b5865a] text-white shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-[#8b4513]/25"
