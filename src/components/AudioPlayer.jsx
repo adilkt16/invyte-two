@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, Play, Pause } from 'lucide-react';
 
-export default function AudioPlayer({ startPlaying, audioUrl = "https://assets.mixkit.co/music/preview/mixkit-serene-forest-12502.mp3" }) {
+export default function AudioPlayer({ startPlaying, audioUrl = "/bg-music.mp3" }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
